@@ -1,14 +1,18 @@
-import Article from "./Article"
+import Article from "./Article.js"
 
-function ArticleList(posts){
-    const postsArr=posts.posts;
+function ArticleList({ posts }){
+    const postsToRender = posts.map(post => (
+        <Article date={post.date}
+            preview={post.preview}
+            title={post.title}
+            key={post.id} />
+    ))
+        
     return(
         <main>
-            {postsArr.map((postObj)=> {
-                return <Article title={postObj.title} date={postObj.date} preview={postObj.preview} key={postObj.id} /> })
-            }
+            {postsToRender}
         </main>
-    );
-};
+    )
+}
 
-export default ArticleList;
+export default ArticleList
